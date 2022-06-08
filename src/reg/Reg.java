@@ -17,9 +17,7 @@ static String firstName, lastname, username, password, taskFirstName, taskLastNa
 static int option, Duration, counter = 0, tasksEnter;
 static int limit = 50;
 static int sumOfDuration = 0;
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
    
      
@@ -78,7 +76,7 @@ static int sumOfDuration = 0;
      if(username1.equals(username) && password1.equals(password)){
          JOptionPane.showMessageDialog(null, "You have logged in");
          JOptionPane.showMessageDialog(null, "Welcome " + firstName + " , " + lastname + " it is great to see you again" );
-         EasyKanban(option);
+         EasyKanban(option);        //Part 2 starts from here.
            
        }
        else{ 
@@ -89,19 +87,26 @@ static int sumOfDuration = 0;
     }
     
     
-    public void checkUserName(){                                                 //This method makes sure that username contains "_" and is no more than 5 characters.
+    public boolean checkUserName(){                                                 //This method makes sure that username contains "_" and is no more than 5 characters.
+        boolean a = false;
+        boolean b = true;
+        //This method makes sure that username contains "_" and is no more than 5 characters.
         if(!(username.contains("_") && username.length() < 6)){
+            
         JOptionPane.showMessageDialog(null, "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than 5 characters in length");
-       }
-    else{
-        JOptionPane.showMessageDialog(null, "Username successfully captured.");
        
+        return a;
+        }
+    else{
+            
+        JOptionPane.showMessageDialog(null, "Username successfully captured.");
+       return b;
     }  
     }
     
     
     public void checkPasswordComplexity(){                                       //This method makes sure that the password meets all 4 of the password complexities.
-        boolean hasNum = false; boolean hasCap = false; boolean hasLow = false; char c;
+      boolean hasNum = false; boolean hasCap = false; boolean hasLow = false; char c;
       for(int i = 0; i < password.length(); i++){
        c = password.charAt(i);
        if(Character.isDigit(c)){
@@ -154,7 +159,7 @@ static int sumOfDuration = 0;
     }
     
     
-    public static void EasyKanban(int option){
+    public static void EasyKanban(int option){                  //Welcome message and menu feature method.
       JOptionPane.showMessageDialog(null, "Welcome to EasyKanban");
       
       option = Integer.parseInt(JOptionPane.showInputDialog(null, "choose one of the following features:" + "\n" + "1) Add tasks" + "\n" + "2) Show report" + "\n" + "3) Quit"));
@@ -182,15 +187,15 @@ static int sumOfDuration = 0;
       int tasksEnter = Integer.parseInt(JOptionPane.showInputDialog(null, "How many tasks do you wish to enter: "));
       String[] tasks = new String[tasksEnter];
       
-      for(int counter = 0; counter < tasksEnter; counter++){
+      for(int counter = 0; counter < tasksEnter; counter++){   //This is the for loop that allows the user to enter the number of tasks using loop counter.
           String taskName =JOptionPane.showInputDialog(null, "Task " + (counter+1) + "\n" + " Enter the name of the task to be performed: ");
           
           String descript = JOptionPane.showInputDialog(null, "Write a short description of the task: ");
-          if(descript.length() == limit == true){
+          if(descript.length() == limit == true){     // The number of characters in the decription should be less than the limit which is 50.
               JOptionPane.showMessageDialog(null, "Please enter a task description of less than 50 characters.");
           }
           else{
-              JOptionPane.showMessageDialog(null, "Task successfully captured.");
+              JOptionPane.showMessageDialog(null, "Task successfully captured.");    //From line 193 to 202 is where the user will enter the task details.
               String taskFirstName = JOptionPane.showInputDialog(null, "Enter your first name: ");
               String taskLastName = JOptionPane.showInputDialog(null, "Enter your last name: ");
               int Duration = Integer.parseInt(JOptionPane.showInputDialog(" Enter the estimated duration of the task in hours"));
@@ -201,7 +206,7 @@ static int sumOfDuration = 0;
                String two = "Done";
                String three = "Doing";
                if(Status == 1){
-                   JOptionPane.showMessageDialog(null, "FULL DETAILS: " + "\n" + "Task Status: " + one + "\n" + "Developer Details: " + taskFirstName + " " + taskLastName + "\n" + "Task Number: " + (counter+1) + "\n" + "Task Name: \"" + taskName + "\"\n" + "Task ID: " + taskName.substring(0, 2) + ":" + (counter+1) + ":" + taskFirstName.substring(0, 3) + "\n" + "Task Description: \"" + descript + "\"\n" + "Duration: " + Duration + "hrs");
+                   JOptionPane.showMessageDialog(null, "FULL DETAILS: " + "\n" + "Task Status: " + one + "\n" + "Developer Details: " + taskFirstName + " " + taskLastName + "\n" + "Task Number: " + (counter+1) + "\n" + "Task Name: \"" + taskName + "\"\n" + "Task ID: " + taskName.substring(0, 2) + ":" + (counter+1) + ":" + taskFirstName.substring(0, 3) + "\n" + "Task Description: \"" + descript + "\"\n" + "Duration: " + Duration + "hrs");   // from line 204 to 211, this piece of code displays the Task details.
                }
                else if(Status == 2){
                    JOptionPane.showMessageDialog(null, "FULL DETAILS: " + "\n" + "Task Status: " + two + "\n" + "Developer Details: " + taskFirstName + " " + taskLastName + "\n" + "Task Number: " + (counter+1) + "\n" + "Task Name: \"" + taskName + "\"\n" + "Task ID: " + taskName.substring(0, 2) + ":" + (counter+1) + ":" + taskFirstName.substring(0, 3) + "\n" + "Task Description: \"" + descript + "\"\n" + "Duration: " + Duration + "hrs");
