@@ -16,14 +16,21 @@ import static reg.Reg.username;
  */
 
 public class Login {
-     public void checkUserName(){                                                 //This method makes sure that username contains "_" and is no more than 5 characters.
+     public boolean checkUserName(){                                                 //This method makes sure that username contains "_" and is no more than 5 characters.
+         boolean a = false;
+        boolean b = true;
+        //This method makes sure that username contains "_" and is no more than 5 characters.
         if(!(username.contains("_") && username.length() < 6)){
+            
         JOptionPane.showMessageDialog(null, "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than 5 characters in length");
-       }
-    else{
-        JOptionPane.showMessageDialog(null, "Username successfully captured.");
        
-    }  
+        return a;
+        }
+    else{
+            
+        JOptionPane.showMessageDialog(null, "Username successfully captured.");
+       return b;
+    } 
     }
      
       public void checkPasswordComplexity(){                                       //This method makes sure that the password meets all 4 of the password complexities.
